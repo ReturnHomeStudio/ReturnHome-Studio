@@ -7,6 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
     *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
     body{font-family:"Microsoft YaHei",sans-serif;background:#f5f7fa;color:#333;line-height:1.7;}
 
     .nav{background:#2c3e50;color:#fff;padding:15px 0;position:sticky;top:0;z-index:999;}
@@ -86,6 +87,14 @@
     .coop-section h3{color:#2c3e50;margin:15px 0 8px 0;font-size:1.15rem;}
     .coop-section p{font-size:1rem;line-height:1.8;}
 
+    /* 支持我们板块样式 */
+    .support-section{background:#fff;padding:20px;border-radius:10px;margin-top:25px;box-shadow:0 3px 12px rgba(0,0,0,0.07);}
+    .support-methods{display:flex;gap:30px;justify-content:center;margin:20px 0;flex-wrap:wrap;}
+    .support-method{text-align:center;}
+    .qrcode{width:200px;height:200px;border:1px solid #eee;border-radius:10px;margin:10px 0;}
+    .funds-disclosure{background:#eaf6ff;padding:15px;border-radius:8px;margin:20px 0;}
+    .legal-tip{color:#e74c3c;font-size:0.9rem;text-align:center;margin-top:15px;}
+
     .disclaimer-section{background:#fff;padding:20px;border-radius:10px;margin-top:25px;box-shadow:0 3px 12px rgba(0,0,0,0.07);}
     .disclaimer-section h3{color:#2c3e50;margin:15px 0 8px 0;font-size:1.15rem;}
     .disclaimer-section p{font-size:1rem;line-height:1.8;}
@@ -101,8 +110,16 @@
     .img-modal-content{max-width:90%;max-height:90%;}
     .close-modal{position:absolute;top:20px;right:30px;color:#fff;font-size:30px;cursor:pointer;}
 
+    /* 返回顶部按钮 */
+    .back-to-top{position:fixed;bottom:30px;right:30px;width:50px;height:50px;background:#2c3e50;color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:1.5rem;display:none;z-index:998;box-shadow:0 3px 10px rgba(0,0,0,0.2);}
+    .back-to-top:hover{background:#34495e;}
+
     .footer{background:#2c3e50;color:#fff;text-align:center;padding:18px;margin-top:40px;}
     .footer p{opacity:0.85;font-size:0.95rem;}
+    .footer a{color:#fff;text-decoration:none;}
+
+    /* 确保已找到板块的徽章显示 */
+    #foundList .found-card .found-badge { display: block !important; }
 
     @media (max-width:768px){
         .nav-menu{display:none;flex-direction:column;position:absolute;top:60px;left:0;width:100%;background:#2c3e50;padding:15px 0;}
@@ -112,6 +129,7 @@
         .chart-grid{grid-template-columns:1fr;}
         .chart-card{height:250px;}
         .missing-img-wrapper{height:180px;}
+        .back-to-top{bottom:20px;right:20px;width:45px;height:45px;}
     }
 </style>
 </head>
@@ -127,6 +145,7 @@
             <a href="#found">已找到</a>
             <a href="#stat">数据统计</a>
             <a href="#coop">合作说明</a>
+            <a href="#support">支持我们</a>
             <a href="#disclaimer">免责条款</a>
             <a href="#legal">合规声明</a>
         </div>
@@ -143,7 +162,7 @@
 <section id="missing">
     <h2>最新寻人信息</h2>
     <div class="notice-box">
-        <p>⚠️ 本平台仅展示【公安部团圆系统公开案例】、【央视《等着我》栏目公开案例】、【今日头条「头条寻人」官方公开案例】，未使用任何未授权信息。</p>
+        <p>📢 本平台仅展示【公安部团圆系统公开案例】、【央视《等着我》栏目公开案例】、【今日头条「头条寻人」官方公开案例】，未使用任何未授权信息。</p>
         <p>本平台仅做公益信息曝光，不提供寻人对接服务，不展示任何隐私信息（电话、住址、身份证、家属信息等）。</p>
         <p>如发现相似人员，请直接拨打 110 报警处理，平台不接收任何线索提交。</p>
     </div>
@@ -157,10 +176,11 @@
 
     <!-- 寻人卡片列表 -->
     <div class="missing-list" id="missingList">
-        <!-- 卡片1：仍在寻找 -->
+        <!-- 卡片1：已找到 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="yizhaodao.png"" alt="张文焕" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="yizhaodao.png" alt="已找到人员" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：已找到</h3>
@@ -177,7 +197,8 @@
         <!-- 卡片2：已找到 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="yizhaodao.png" alt="施娜" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="yizhaodao.png" alt="已找到人员" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：已找到</h3>
@@ -191,10 +212,11 @@
             </div>
         </div>
 
-        <!-- 卡片3：仍在寻找 -->
+        <!-- 卡片3：已找到 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="yizhaodao.png"" alt="何学光" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="yizhaodao.png" alt="已找到人员" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：已找到</h3>
@@ -211,7 +233,8 @@
         <!-- 卡片4：已找到 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="yizhaodao.png" alt="黄小荣" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="yizhaodao.png" alt="已找到人员" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：已找到</h3>
@@ -228,7 +251,8 @@
         <!-- 卡片5：已找到 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="yizhaodao.png" alt="刘树国" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="yizhaodao.png" alt="已找到人员" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：已找到</h3>
@@ -242,13 +266,14 @@
             </div>
         </div>
 
-        <!-- 卡片6：仍在寻找 -->
+        <!-- 卡片6：已找到 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="yizhaodao.png" alt="陈检妹" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="yizhaodao.png" alt="已找到人员" class="missing-img">
             </div>
             <div class="missing-info">
-                <h3>姓名：已找到"</h3>
+                <h3>姓名：已找到</h3>
                 <p>性别：女</p>
                 <p>年龄：86岁</p>
                 <p>失踪时间：2026-03-09</p>
@@ -259,10 +284,11 @@
             </div>
         </div>
 
-        <!-- 卡片7：仍在寻找 -->
+        <!-- 卡片7：已找到 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="yizhaodao.png" alt="王周让" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="yizhaodao.png" alt="已找到人员" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：已找到</h3>
@@ -279,7 +305,8 @@
         <!-- 卡片8：仍在寻找 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/ba1fbd438a1f4bf08bd3a2bc7dbbaa09~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1773903933&x-signature=YYYT9%2F6JRbyV902jpNphZrs0ACA%3D" alt="王天时" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="wangtianshi.png" alt="王天时" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：王天时</h3>
@@ -293,10 +320,11 @@
             </div>
         </div>
 
-        <!-- 卡片9：仍在寻找 -->
+        <!-- 卡片9：已找到 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="yizhaodao.png" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="yizhaodao.png" alt="已找到人员" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：已找到</h3>
@@ -310,9 +338,11 @@
             </div>
         </div>
 
+       <!-- 卡片10：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p26-sign.toutiaoimg.com/tos-cn-i-axegupay5k/bf7dfadae2e24762b15a395eca40e47d~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1773998566&x-signature=qxoJBJeYgsSJTO985A6FN1B3u7g%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="wenjinhua.png" alt="文金华" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：文金华</h3>
@@ -326,9 +356,11 @@
             </div>
         </div>
 
+       <!-- 卡片11：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/db500488ec1a417692405a1a7c064e1e~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1773999344&x-signature=XC7d0LiI9SfOnOYhBwEA0u%2FbegI%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="zhaowenxiu.png" alt="赵文秀" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：赵文秀</h3>
@@ -342,9 +374,11 @@
             </div>
         </div>
 
+       <!-- 卡片12：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p26-sign.toutiaoimg.com/tos-cn-i-axegupay5k/d577495a019143d6b5b96c73672e6157~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1773999416&x-signature=TZq3fYbDGvP3JCAsalDELWAtQWM%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="lishuiyuan.png" alt="李水元" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：李水元</h3>
@@ -358,9 +392,11 @@
             </div>
         </div>
 
+       <!-- 卡片13：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/fed59e020bd2456a83d4f522ac3a431b~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1773999490&x-signature=zEgY88KUhSkYbuXXBx86Zk1qIdE%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="zhouzhengtian.png" alt="周正田" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：周正田</h3>
@@ -374,9 +410,11 @@
             </div>
         </div>
 
+       <!-- 卡片14：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-rvv6puvcty/1989fc9b55a1444ba28904aa821d2cd9~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1773999553&x-signature=XJrWJX6yPHDAoMUJpKJMsTap0CE%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="xiaxianglian.png" alt="夏香莲" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：夏香莲</h3>
@@ -390,9 +428,11 @@
             </div>
         </div>
 
+       <!-- 卡片15：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/392163040918402ba593b80c9cf6cc1f~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1773999636&x-signature=N1QgNlTqqCK5CgX94JzW9RaQEno%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="kangluoqi.png" alt="康洛七" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：康洛七</h3>
@@ -406,9 +446,11 @@
             </div>
         </div>
 
+        <!-- 卡片16：已找到 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="yizhaodao.png"" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="yizhaodao.png" alt="已找到人员" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：已找到</h3>
@@ -422,9 +464,11 @@
             </div>
         </div>
 
+        <!-- 卡片17：仍在寻找 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/d0b88bdbee05478e9bb304f61e709742~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1773999759&x-signature=KYTjPSd4bgCFtkZxlIGSnC1tXFs%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="louqiaoyun.png" alt="娄巧云" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：娄巧云</h3>
@@ -438,9 +482,11 @@
             </div>
         </div>
 
+       <!-- 卡片18：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/f4c858a8bbf64ec59cc3ae1352d561ba~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1773999815&x-signature=6dnSEGInEMr9naQO5of8WEFInyY%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="fengdayuan.png" alt="冯大元" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：冯大元</h3>
@@ -454,9 +500,11 @@
             </div>
         </div>
 
+       <!-- 卡片19：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/fc6a1d2cee7f4aca917d4739b35d7cdf~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774115768&x-signature=W1JCEwAOfekwZ8Qp35x2pDTXmlI%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="cuiweijun.png" alt="崔维军" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：崔维军</h3>
@@ -470,9 +518,11 @@
             </div>
         </div>
 
+       <!-- 卡片20：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/db0a914327da40d59a5542fbb9295ba5~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774115953&x-signature=hQhuVlP8d9k76mhrrPt%2BO22dvAE%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="wushuifeng.png" alt="吴水风" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：吴水风</h3>
@@ -486,9 +536,11 @@
             </div>
         </div>
 
+       <!-- 卡片21：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/2c18b7f715f84f5bbfa7954d56d2528f~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774116382&x-signature=8OKhKz7xkcMvUa6LOTNJj7Dz7Sc%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="guozhiying.png" alt="郭志英" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：郭志英</h3>
@@ -502,9 +554,11 @@
             </div>
         </div>
 
+        <!-- 卡片22：仍在寻找 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/625387b8f47647568a759139e818cea0~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774116440&x-signature=uAKlwZK%2Ba5sq3W2nrJ5LDJYpmls%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="lizhongliang.png" alt="李忠良" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：李忠良</h3>
@@ -518,9 +572,11 @@
             </div>
         </div>
 
+       <!-- 卡片23：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/97fca758168c426bb4414d664224d1ef~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774116496&x-signature=wVjG4nNlUX%2BJ49%2FhpmdeeNCt6Fg%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="yaoyun.png" alt="姚云" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：姚云</h3>
@@ -534,9 +590,11 @@
             </div>
         </div>
 
+       <!-- 卡片24：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/455bd9fba9954f4cb11c0aac25b3417c~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774116571&x-signature=1eiwJ%2BjstWesfwh74UIFFBfQT3Y%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="yangzaifu.png" alt="杨再福" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：杨再福</h3>
@@ -550,9 +608,11 @@
             </div>
         </div>
 
+       <!-- 卡片25：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/edbf39fc5d9046bcbf4e262b463d3af7~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774116639&x-signature=0Igo5dJydfZXd5S%2FKJkXtm8h%2FzU%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="chendeyu.png" alt="陈德玉" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：陈德玉</h3>
@@ -566,9 +626,11 @@
             </div>
         </div>
 
+        <!-- 卡片26：仍在寻找 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/cbfb2c9085994e4687937a3adc0ef863~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774116778&x-signature=bHdSYNaKx%2BBsfzPKW7XPnC2Lsjs%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="wumeilan.png" alt="吴美兰" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：吴美兰</h3>
@@ -582,9 +644,11 @@
             </div>
         </div>
 
+       <!-- 卡片27：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/c5a5db2d432d40d98e31a430d55512c6~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774116857&x-signature=7RDmdMYRm6Tg5vodjy2y%2FlU5isw%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="wangfuying.png" alt="王付英" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：王付英</h3>
@@ -598,9 +662,11 @@
             </div>
         </div>
 
+       <!-- 卡片28：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/b4103e5d26254d2f88add58068327b71~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774156338&x-signature=NwRF9G4c9V%2B7ZBKcmc9gXiyVSq0%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="zhengqinglian.png" alt="郑清莲" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：郑清莲</h3>
@@ -614,9 +680,11 @@
             </div>
         </div>
 
+       <!-- 卡片29：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/8645d19aee32407fa27caa3f8dab0d76~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774156420&x-signature=TWwd4DScKM65Cpa3PC1%2B7LsicB0%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="liurongyu.png" alt="刘荣誉" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：刘荣誉</h3>
@@ -630,9 +698,11 @@
             </div>
         </div>
 
+        <!-- 卡片30：仍在寻找 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/bf699d7acb964499a2477c3c59245f8c~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774156501&x-signature=ZtLryL6VjcpumjZF9vCjFTmLvb8%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="yangwenping.png" alt="杨文平" class="missing-img">
             </div>
             <div class="missing-info">
                 <h3>姓名：杨文平</h3>
@@ -646,12 +716,14 @@
             </div>
         </div>
 
+       <!-- 卡片31：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/a90f9abf69214ddb92791080a86c11ae~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774156558&x-signature=ZTpLZ8f41PS9e9N4emdVb2CxSxo%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="liboying.png" alt="李柏英" class="missing-img">
             </div>
             <div class="missing-info">
-                <h3>姓名：李柏英/h3>
+                <h3>姓名：李柏英</h3>
                 <p>性别：女</p>
                 <p>年龄：78岁</p>
                 <p>失踪时间：2026-03-14</p>
@@ -662,12 +734,14 @@
             </div>
         </div>
 
+        <!-- 卡片32：仍在寻找 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/96060a3b243b4ac1ac184137905ae932~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774197159&x-signature=QVBmxSS6ZEym%2FiCOfrjGpj3rJgk%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="huangshengyu.png" alt="黄生玉" class="missing-img">
             </div>
             <div class="missing-info">
-                <h3>姓名：黄生玉/h3>
+                <h3>姓名：黄生玉</h3>
                 <p>性别：女</p>
                 <p>年龄：73岁</p>
                 <p>失踪时间：2026-03-15</p>
@@ -678,12 +752,14 @@
             </div>
         </div>
 
+        <!-- 卡片33：仍在寻找 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/5bb156bab39b4455879aa6c3f2e621a2~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774197253&x-signature=wX4Iro%2Bu%2BK5CJU4X7%2FUlemN9mrc%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="wangchaoyang.png" alt="王朝阳" class="missing-img">
             </div>
             <div class="missing-info">
-                <h3>姓名：王朝阳/h3>
+                <h3>姓名：王朝阳</h3>
                 <p>性别：男</p>
                 <p>年龄：82岁</p>
                 <p>失踪时间：2026-03-14</p>
@@ -694,12 +770,14 @@
             </div>
         </div>
 
+       <!-- 卡片34：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/2286b63b4a3646e1afa73ee4f55fea9c~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774197326&x-signature=tidfCvaODhuaz43Lzz%2F%2F%2BH%2FkQ8w%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="ligaosheng.png" alt="李高升" class="missing-img">
             </div>
             <div class="missing-info">
-                <h3>姓名：李高升/h3>
+                <h3>姓名：李高升</h3>
                 <p>性别：男</p>
                 <p>年龄：75岁</p>
                 <p>失踪时间：2026-03-14</p>
@@ -710,12 +788,14 @@
             </div>
         </div>
 
+        <!-- 卡片35：仍在寻找 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p26-sign.toutiaoimg.com/tos-cn-i-axegupay5k/ffe37058921c44909fcca0b5e36ced2e~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774197401&x-signature=Olfzzo2uW1fQgdCoAxaqiNq0gYU%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="sundingjun.png" alt="孙定军" class="missing-img">
             </div>
             <div class="missing-info">
-                <h3>姓名：孙定军/h3>
+                <h3>姓名：孙定军</h3>
                 <p>性别：男</p>
                 <p>年龄：67岁</p>
                 <p>失踪时间：2026-03-13</p>
@@ -726,12 +806,14 @@
             </div>
         </div>
 
+       <!-- 卡片36：仍在寻找 -->
        <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/c5d67f05da6344848224e45701a8bd68~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774197469&x-signature=DV7%2FONZxwKBfidEtxt0TSXjMe3w%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="luzhaoqun.png" alt="鲁兆群" class="missing-img">
             </div>
             <div class="missing-info">
-                <h3>姓名：鲁兆群/h3>
+                <h3>姓名：鲁兆群</h3>
                 <p>性别：男</p>
                 <p>年龄：84岁</p>
                 <p>失踪时间：2026-03-13</p>
@@ -742,12 +824,14 @@
             </div>
         </div>
 
+        <!-- 卡片37：仍在寻找 -->
         <div class="missing-card">
             <div class="missing-img-wrapper" onclick="openImgModal(this)">
-                <img src="https://p3-sign.toutiaoimg.com/tos-cn-i-axegupay5k/b989618b8684412593be36014b8252ed~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1774197531&x-signature=%2FfGEGknNWSWEMpcEyKDZU7iae8o%3D" alt="林歆亮" class="missing-img">
+                <!-- ⚠️ 请替换为你下载到本地的图片文件名 -->
+                <img src="caiyunzhi.png" alt="蔡运枝" class="missing-img">
             </div>
             <div class="missing-info">
-                <h3>姓名：蔡运枝/h3>
+                <h3>姓名：蔡运枝</h3>
                 <p>性别：女</p>
                 <p>年龄：85岁</p>
                 <p>失踪时间：2026-03-12</p>
@@ -771,7 +855,7 @@
 <section id="found">
     <h2>已找到人员信息</h2>
     <div class="notice-box">
-        <p>✅ 以下为已成功找回的人员信息，感谢每一位爱心人士的帮助！</p>
+        <p>🎉 以下为已成功找回的人员信息，感谢每一位爱心人士的帮助！</p>
     </div>
     <div class="missing-list" id="foundList">
         <!-- 内容由JS自动填充 -->
@@ -785,7 +869,7 @@
     </div>
 </section>
 
-<!-- 其他区域（数据统计、合作说明等）保持不变 -->
+<!-- 数据统计区域 -->
 <section id="stat" class="stat-section">
     <h2>全国失踪人口数据统计（非官方）</h2>
     <div class="chart-wrapper">
@@ -805,9 +889,10 @@
             </div>
         </div>
     </div>
-    <p style="font-size:12px;color:#666;margin-top:10px;text-align:center;">⚠️ 数据说明：本数据为公开信息整理的参考值，不代表官方统计，仅用于公益科普。</p>
+    <p style="font-size:12px;color:#666;margin-top:10px;text-align:center;">📢 数据说明：本数据整理自公安部历年公开通报、民政部公开数据、第三方公益平台公开报告，为公开信息整理的参考值，不代表官方统计，仅用于公益科普。</p>
 </section>
 
+<!-- 合作说明区域 -->
 <section id="coop" class="coop-section">
     <h2>合作说明</h2>
     <h3>可合作方</h3>
@@ -819,22 +904,57 @@
     <p>4. 联合寻人公益活动（无收费环节）</p>
     <h3>本平台绝不提供/参与</h3>
     <p>❌ 不收费置顶、不收取寻人费、不接商业广告</p>
-    <p>❌ 不募捐、不筹款、不接受赞赏、不开展有偿服务</p>
-    <p>❌ 不使用/传播未授权的失踪人口信息</p>
+    <p>❌ 不开展公开募捐、不接受任何形式的有偿服务</p>
     <h3>联系方式</h3>
     <p>📧合作邮箱：3141254865@qq.com（仅对接公益合作，不处理寻人线索）</p>
 </section>
 
+<!-- 支持我们板块 -->
+<section id="support" class="support-section">
+    <h2>支持我们</h2>
+    <div class="notice-box">
+        <p>💝 您的支持将用于网站服务器维护、公益寻人信息曝光推广，帮助更多家庭团圆。</p>
+        <p>本平台为个人公益项目，所有支持均为自愿赠与，不构成任何形式的交易或投资。</p>
+    </div>
+    <div class="support-methods">
+        <div class="support-method">
+            <h3>支付宝支持</h3>
+            <!-- ⚠️ 请替换为你自己的支付宝收款码图片文件名 -->
+            <img src="zhifubao.png" alt="支付宝收款码" class="qrcode">
+            <p>打开支付宝扫描上方二维码</p>
+            <p style="font-size:12px;color:#666;">自愿赠与，不构成任何交易或投资</p>
+        </div>
+        <div class="support-method">
+            <h3>微信支持</h3>
+            <!-- ⚠️ 请替换为你自己的微信收款码图片文件名 -->
+            <img src="weixin.png" alt="微信收款码" class="qrcode">
+            <p>打开微信扫描上方二维码</p>
+            <p style="font-size:12px;color:#666;">自愿赠与，不构成任何交易或投资</p>
+        </div>
+    </div>
+    <div class="funds-disclosure">
+        <h3>资金使用公示</h3>
+        <p>我们将定期在网站更新资金使用情况，确保每一笔支持都用于公益用途。</p>
+        <p>（公示板块将在收到第一笔支持后的7天内上线）</p>
+    </div>
+    <div class="legal-tip">
+        <p>⚠️ 法律提示：本平台不具备公开募捐资格，您的支持属于自愿赠与行为。我们承诺所有资金将用于网站维护及公益寻人推广，不挪作他用。</p>
+    </div>
+</section>
+
+<!-- 免责条款区域 -->
 <section id="disclaimer" class="disclaimer-section">
     <h2>免责条款</h2>
     <p>1. 本平台为纯个人公益展示网站，所有寻人信息均来源于今日头条「头条寻人」官方账号、公安部团圆系统、央视《等着我》栏目等官方公开渠道，仅用于社会公益宣传与科普，无任何商业目的。</p>
     <p>2. 本平台不接受用户投稿、不收集个人信息、不提供寻人对接服务，不展示任何隐私信息（电话、住址、身份证、家属信息等）。</p>
-    <p>3. 本平台无任何收费项目、不开展募捐、不接受赞赏、不投放广告、无任何盈利行为。</p>
+    <p>3. 本平台无任何收费寻人、有偿置顶、商业广告等盈利性项目，不开展公开募捐，仅接受用户自愿赠与用于网站维护及公益推广。</p>
     <p>4. 平台展示内容均为官方公益寻人信息，若涉及原发布方权益侵权，请联系邮箱说明，我们将在24小时内核实并删除处理。</p>
     <p>5. 任何单位或个人使用本平台信息，必须遵守国家法律，仅可用于公益用途，不得用于违法、侵权、盈利等行为，否则责任自负。</p>
     <p>6. 本平台仅提供公益信息展示，因使用本站内容产生的一切法律风险与责任，由使用者自行承担，本站不承担法律责任。</p>
+    <p>7. 本平台接受的支持均为用户自愿赠与，用于网站维护及公益寻人推广，不构成任何交易或投资。平台将定期公示资金使用情况，但不保证支持能实现特定结果，不承担赠与资金的任何回报责任。</p>
 </section>
 
+<!-- 合规声明区域 -->
 <section id="legal" class="legal">
     <h2 style="border-bottom:none;">合规声明</h2>
     <p>1. 本平台严格遵守《网络安全法》《个人信息保护法》《数据安全法》等国家法律法规。</p>
@@ -843,6 +963,7 @@
     <p>4. 仅使用今日头条「头条寻人」、公安部团圆系统、央视《等着我》等官方主动公开的寻人信息，无未授权信息使用行为。</p>
     <p>5. 不开展任何形式的收费寻人、有偿置顶、募捐筹款、商业合作等活动。</p>
     <p>6. 如内容侵犯您的合法权益，请联系邮箱：3141254865@qq.com，我们承诺24小时内核实并处理。</p>
+    <p>7. 本平台不具备公开募捐资格，仅接受用户自愿赠与，所有赠与资金将用于网站维护及公益寻人推广，不挪作他用，并定期公示使用情况。</p>
 </section>
 </div>
 
@@ -852,8 +973,13 @@
     <img class="img-modal-content" id="modalImg">
 </div>
 
+<!-- 返回顶部按钮 -->
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
 <div class="footer">
     <p>归巢工作室 ReturnHome Studio © 2026 公益寻人平台 版权所有</p>
+    <!-- ⚠️ 如果你有ICP备案号，请把下面的XXICP备XXXXXXXX号替换成你的备案号，并取消注释 -->
+    <!-- <p style="margin-top:5px;font-size:12px;"><a href="https://beian.miit.gov.cn/" target="_blank">XXICP备XXXXXXXX号</a></p> -->
     <p style="margin-top:5px;font-size:12px;">遵守法律法规 · 守护信息安全 · 仅使用合规公开信息 · 专注公益寻人</p>
 </div>
 
@@ -891,6 +1017,9 @@
         
         // 8. 初始化图表
         initCharts();
+
+        // 9. 绑定返回顶部按钮事件
+        initBackToTop();
     };
 
     // 标记已找到的卡片（添加类和徽章）
@@ -1062,6 +1191,28 @@
     // 移动端菜单切换
     function toggleMenu() {
         document.getElementById('navMenu').classList.toggle('show');
+    }
+
+    // 初始化返回顶部按钮
+    function initBackToTop() {
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        // 滚动时显示/隐藏按钮
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+    }
+
+    // 滚动到顶部
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     }
 
     // 初始化图表
